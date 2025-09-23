@@ -12,6 +12,9 @@ RUN apt-get update && apt-get install -y \
     iputils-ping \
     software-properties-common \
     fonts-noto-cjk \
+    libreoffice \
+    libreoffice-l10n-zh-cn \
+    libreoffice-help-zh-cn \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
     && rm -rf /var/lib/apt/lists/*
