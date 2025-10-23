@@ -2,19 +2,25 @@ FROM public.ecr.aws/amazoncorretto/amazoncorretto:8
 
 LABEL maintainer="https://github.com/freemankevin/java-local"
 
-ENV DEBIAN_FRONTEND=noninteractive
-ENV TZ=Asia/Shanghai
+ENV DEBIAN_FRONTEND=noninteractive \
+    TZ=Asia/Shanghai
 
-RUN apt-get update && apt-get install -y \
+RUN yum update -y && \
+    yum install -y \
     tzdata \
     curl \
+    wget \
     net-tools \
-    iputils-ping \
-    software-properties-common \
-    fonts-noto-cjk \
+    iputils \
+    telnet \
+    bind-utils \
     libreoffice \
-    libreoffice-l10n-zh-cn \
-    libreoffice-help-zh-cn \
+    libreoffice-langpack-zh_CN \
+    google-noto-sans-cjk-fonts \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
-    && rm -rf /var/lib/apt/lists/*
+    && yum clean all && \
+    rm -rf /var/cache/yum/*
+
+# 确保 SSL 证书已更新
+RUN update-ca-trust
