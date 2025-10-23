@@ -1,4 +1,4 @@
-FROM bellsoft/liberica-openjdk-debian:8-cds
+FROM public.ecr.aws/amazoncorretto/amazoncorretto:8
 
 LABEL maintainer="https://github.com/freemankevin/java-local"
 
